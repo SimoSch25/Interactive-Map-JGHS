@@ -1,0 +1,623 @@
+:root {
+    --stardew-green: #70C725;
+    --stardew-dark-green: #5D9054;
+    --stardew-brown: #6B3710;
+    --stardew-light-brown: #A08C75;
+    --stardew-yellow: #FFD921;
+    --stardew-sky-blue: #59C9F1;
+    --stardew-berry-red: #B52121;
+    --stardew-cream: #DDA059;
+    --stardew-dark-blue: #151152;
+    --stardew-stone: #8E8B84;
+    --stardew-ground-texture: #C8B99A;
+    --primary-accent: var(--stardew-green);
+    --primary-accent-dark: var(--stardew-dark-green);
+    --primary-accent-darker: var(--stardew-brown);
+
+    --success-color: var(--stardew-green);
+    --success-color-dark: var(--stardew-dark-green);
+
+    --danger-color: var(--stardew-berry-red);
+    --danger-color-dark: #9D4B3C;
+
+    --info-color: var(--stardew-sky-blue);
+    --info-color-dark: #4F6B8A;
+
+    --card-base: var(--stardew-cream);
+    --header-base: var(--stardew-cream);
+    --text-dark: var(--stardew-dark-blue);
+    --text-medium: #3A3A3C;
+    --text-light: #5C5C5E;
+    --border-subtle: rgba(0, 0, 0, 0.2);
+    --shadow-subtle: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', cursive, 'Montserrat', sans-serif;
+    background-color: var(--stardew-ground-texture);
+    color: var(--text-dark);
+   
+    background-image: url('https://i.postimg.cc/P57bnBZd/a0397030-d7f7-40c3-9b6d-c7a36de4c622b-fotor-ai-art-effects-20250710183721.png');
+    background-size: cover;
+    background-position: center;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: -1;
+}
+
+
+.header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    background-color: var(--header-base);
+    box-shadow: 4px 4px 0px var(--stardew-dark-blue);
+    z-index: 10;
+    border-bottom: 2px solid var(--stardew-brown);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.header-right-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.header button,
+.bottom-buttons button,
+#content-area button,
+.modal-content button {
+    background-color: var(--primary-accent);
+    border: 2px solid var(--primary-accent-darker);
+    padding: 6px 12px;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.1s steps(2), border-color 0.1s steps(2), transform 0.1s steps(2);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    font-size: 0.9em;
+    white-space: nowrap;
+    box-shadow: 3px 3px 0px var(--stardew-dark-blue);
+}
+
+.header button:hover,
+.bottom-buttons button:hover,
+#content-area button:hover,
+.modal-content button:hover {
+    background-color: var(--primary-accent-dark);
+    border-color: var(--primary-accent-darker);
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px var(--stardew-dark-blue);
+}
+
+.header button:active,
+.bottom-buttons button:active,
+#content-area button:active,
+.modal-content button:active {
+    background-color: var(--primary-accent-darker);
+    border-color: var(--primary-accent-darker);
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px var(--stardew-dark-blue);
+}
+
+/* Specific button styles */
+#backBtn {
+    background-color: transparent;
+    color: var(--text-medium);
+    opacity: 1;
+    border: none;
+    box-shadow: none;
+    padding: 6px 10px;
+    font-size: 0.85em;
+}
+
+#backBtn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-dark);
+    transform: none;
+    box-shadow: none;
+}
+
+#backBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: transparent;
+    color: var(--text-light);
+    transform: none;
+    box-shadow: none;
+}
+
+#container {
+    padding: 16px;
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-grow: 1;
+}
+
+#content-area {
+    padding: 20px;
+    background-color: var(--card-base);
+    border-radius: 4px;
+    max-width: 800px;
+    min-height: 100px;
+    box-shadow: 8px 8px 0px var(--stardew-dark-blue);
+    transition: all 0.2s steps(2);
+    backdrop-filter: blur(0px);
+    opacity: 1;
+    margin: 16px auto;
+    box-sizing: border-box;
+    border: 4px solid var(--stardew-brown);
+ 
+    border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect x="0" y="0" width="16" height="16" fill="%236B3710"/><rect x="1" y="1" width="14" height="14" fill="%23DDA059"/><rect x="0" y="0" width="1" height="1" fill="%236B3710"/><rect x="15" y="0" width="1" height="1" fill="%236B3710"/><rect x="0" y="15" width="1" height="1" fill="%236B3710"/><rect x="15" y="15" width="1" height="1" fill="%236B3710"/></svg>') 4 / 4px stretch;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+#content-area h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 1.2em;
+    line-height: 1.2;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+#content-area h3 {
+    margin-top: 20px;
+    margin-bottom: 12px;
+    color: var(--text-medium);
+    border-bottom: 2px dashed var(--border-subtle);
+    padding-bottom: 4px;
+    font-size: 1em;
+    line-height: 1.2;
+}
+
+#map {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 70px);
+    gap: 8px;
+    margin-bottom: 20px;
+    margin-top: 8px;
+    position: relative;
+    backdrop-filter: blur(0px);
+    border-radius: 4px;
+    padding: 12px;
+    background: var(--card-base);
+    box-shadow: 8px 8px 0px var(--stardew-dark-blue);
+    border: 4px solid var(--stardew-brown);
+    /* Custom pixelated border from a data URL SVG */
+    border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect x="0" y="0" width="16" height="16" fill="%236B3710"/><rect x="1" y="1" width="14" height="14" fill="%23DDA059"/><rect x="0" y="0" width="1" height="1" fill="%236B3710"/><rect x="15" y="0" width="1" height="1" fill="%236B3710"/><rect x="0" y="15" width="1" height="1" fill="%236B3710"/><rect x="15" y="15" width="1" height="1" fill="%236B3710"/></svg>') 4 / 4px stretch;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.map-cell {
+    background-color: var(--stardew-light-brown);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 4px;
+    transition: background-color 0.1s steps(2), transform 0.1s steps(2), box-shadow 0.1s steps(2);
+    opacity: 1;
+    color: var(--stardew-dark-blue);
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+    text-align: center;
+    line-height: 1.2;
+    border: 2px solid var(--stardew-brown);
+    box-shadow: 2px 2px 0px var(--stardew-dark-blue);
+}
+
+.map-cell:hover {
+    background-color: var(--stardew-green);
+    transform: translate(-1px, -1px);
+    opacity: 1;
+    color: white;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 0px var(--stardew-dark-blue);
+}
+
+.map-cell:active {
+    background-color: var(--stardew-light-brown);
+    transform: translate(0px, 0px);
+    box-shadow: 2px 2px 0px var(--stardew-dark-blue);
+}
+
+#preproom { background-color: #7A8F9B; border-color: #5C7A9D; }
+#lab1, #lab2, #lab3, #lab4 { background-color: #B08D7B; border-color: #9D7462; }
+#greenhouse { background-color: #7BBF7D; border-color: #60A062; }
+#lab5, #lab6, #lab7 { background-color: #8CA0B8; border-color: #728A9E; }
+#bookstore { background-color: #95786C; border-color: #7E6257; }
+#lab8, #lab9, #lab10 { background-color: #70655A; border-color: #5A4E46; }
+#academy { background-color: #DDAA66; border-color: #C08D4C; }
+
+#content-area ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 16px;
+}
+
+.equipment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: var(--stardew-ground-texture);
+    margin-bottom: 6px;
+    border-radius: 2px;
+    transition: background-color 0.1s steps(2), transform 0.1s steps(2), box-shadow 0.1s steps(2);
+    font-size: 0.9em;
+    color: var(--text-dark);
+    border: 2px solid var(--stardew-stone);
+    box-shadow: 2px 2px 0px var(--stardew-dark-blue);
+}
+
+.equipment-item:hover {
+    background-color: var(--stardew-light-brown);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--stardew-dark-blue);
+}
+
+.equipment-item:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px var(--stardew-dark-blue);
+}
+
+.equipment-name {
+    flex-grow: 1;
+    padding-right: 8px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.quantity-controls button {
+    padding: 3px 6px;
+    font-size: 0.75em;
+    font-weight: 700;
+    border-radius: 2px;
+    background-color: var(--success-color);
+    color: #fff;
+    opacity: 1;
+    flex-shrink: 0;
+    border: 1px solid var(--success-color-dark);
+    box-shadow: 1px 1px 0px var(--stardew-dark-blue);
+}
+
+.quantity-controls button:nth-of-type(1) { /* Decrease button */
+    background-color: var(--danger-color);
+    border-color: var(--danger-color-dark);
+}
+
+.quantity-controls button:nth-of-type(1):hover {
+    background-color: var(--danger-color-dark);
+}
+
+.quantity-controls input[type="text"] {
+    width: 40px;
+    padding: 3px 4px;
+    font-size: 0.8em;
+    text-align: center;
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
+    box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    background-color: var(--card-base);
+    color: var(--text-dark);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.quantity-controls input[type="text"]:focus {
+    border-color: var(--primary-accent);
+    outline: none;
+    box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--primary-accent);
+}
+
+.item-actions {
+    display: flex;
+    gap: 6px;
+    margin-left: 8px; /* Spacing between quantity and actions */
+}
+
+.item-actions button {
+    background-color: var(--stardew-ground-texture);
+    border: 1px solid var(--stardew-stone);
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 0.7em;
+    color: var(--text-medium);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background-color 0.1s steps(2), transform 0.1s steps(2), box-shadow 0.1s steps(2);
+    box-shadow: 1px 1px 0px var(--stardew-dark-blue);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.item-actions button:hover {
+    background-color: var(--stardew-light-brown);
+    transform: translate(0.5px, 0.5px);
+    box-shadow: 0.5px 0.5px 0px var(--stardew-dark-blue);
+}
+
+.item-actions button:active {
+    transform: translate(1px, 1px);
+    box-shadow: 0px 0px 0px var(--stardew-dark-blue);
+}
+
+.delete-item {
+    color: var(--danger-color);
+    border-color: var(--danger-color-dark);
+}
+
+.delete-item:hover {
+    background-color: var(--danger-color);
+    color: white;
+    border-color: var(--danger-color);
+}
+
+.archive-item {
+    color: var(--info-color);
+    border-color: var(--info-color-dark);
+}
+
+.archive-item:hover {
+    background-color: var(--info-color);
+    color: white;
+    border-color: var(--info-color);
+}
+
+.restore-item {
+    color: var(--success-color);
+    border-color: var(--success-color-dark);
+}
+
+.restore-item:hover {
+    background-color: var(--success-color);
+    color: white;
+    border-color: var(--success-color);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.modal-content {
+    background-color: var(--card-base);
+    padding: 24px;
+    border-radius: 4px;
+    box-shadow: 8px 8px 0px var(--stardew-dark-blue);
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    animation: fadeInScalePixel 0.2s steps(2);
+    border: 4px solid var(--stardew-brown);
+    border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect x="0" y="0" width="16" height="16" fill="%236B3710"/><rect x="1" y="1" width="14" height="14" fill="%23DDA059"/><rect x="0" y="0" width="1" height="1" fill="%236B3710"/><rect x="15" y="0" width="1" height="1" fill="%236B3710"/><rect x="0" y="15" width="1" height="1" fill="%236B3710"/><rect x="15" y="15" width="1" height="1" fill="%236B3710"/></svg>') 4 / 4px stretch;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+@keyframes fadeInScalePixel {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close-button {
+    color: var(--stardew-dark-blue);
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.1s steps(2);
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3);
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--stardew-berry-red);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: var(--text-medium);
+    font-size: 0.9em;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid var(--stardew-brown);
+    border-radius: 2px;
+    font-size: 0.9em;
+    box-sizing: border-box;
+    background-color: var(--stardew-ground-texture);
+    color: var(--text-dark);
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.15);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+    border-color: var(--primary-accent);
+    outline: none;
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--primary-accent);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-light);
+    font-size: 0.75em;
+}
+
+.modal-content button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    margin-top: 16px;
+    background-color: var(--success-color);
+    border-color: var(--success-color-dark);
+    box-shadow: 3px 3px 0px var(--stardew-dark-blue);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    transition: background-color 0.1s steps(2);
+    box-shadow: 3px 3px 0px var(--stardew-dark-blue);
+}
+
+.modal-buttons button.danger-btn {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color-dark);
+}
+
+.modal-buttons button.success-btn {
+    background-color: var(--success-color);
+    border-color: var(--success-color-dark);
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 8px;
+    }
+    .header-right-buttons {
+        width: 100%;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    #map {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        grid-template-rows: auto;
+        gap: 6px;
+        padding: 8px;
+    }
+    .map-cell {
+        font-size: 0.8rem;
+        padding: 4px;
+    }
+    #content-area {
+        padding: 12px;
+    }
+    .equipment-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .quantity-controls {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .quantity-controls input[type="text"] {
+        width: 35px;
+    }
+    .cabinet-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    }
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #searchInput, #searchBtnConfirm {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+    }
+    #searchBtnConfirm {
+        margin-top: 8px;
+    }
+    .modal-content {
+        width: 95%;
+        padding: 16px;
+    }
+}
